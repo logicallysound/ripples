@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Ripples</title>
+    <link rel="stylesheet" href="css/ripples.css">
+    <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="js/anime.min.js"></script>
+  </head>
+  <body>
+    <div class="animation-wrapper">
+      <div class="el"></div>
+      <div class="el"></div>
+      <div class="el"></div>
+    </div>
+    <script>
+      var maxTop = 960;
+      var maxLeft = 960;
+
+      var moveWave = function() {
+        var newTop = Math.floor(Math.random() * maxTop) + 1;
+        var newLeft = Math.floor(Math.random() * maxLeft) + 1;
+
+        $('.el').css('top', newTop);
+        $('.el').css('left', newLeft);
+      };
+
+      var waveAnimation = function() {
+        anime({
+          targets: '.el',
+          scaleX: 25,
+          scaleY: 25,
+          opacity: [
+            {value: 0.5, duration: 500},
+            {value: 0.0, duration: 1500}
+          ],
+          duration: 2000,
+          delay: anime.stagger(400),
+          easing: 'easeInOutSine',
+          loop: true,
+          loopComplete: moveWave
+        });
+      };
+
+      waveAnimation();
+    </script>
+  </body>
+</html>
