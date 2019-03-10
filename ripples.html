@@ -8,37 +8,38 @@
     <script type="text/javascript" src="js/anime.min.js"></script>
   </head>
   <body>
-    <div class="animation-wrapper">
-      <div class="el"></div>
-      <div class="el"></div>
-      <div class="el"></div>
-    </div>
+    <svg width="1920" height="1080">
+      <circle class="el" style="fill: none; stroke: #FFF; stroke-width: 0px; opacity: 0.0" cx="100" cy="100" r="2"></circle>
+      <circle class="el" style="fill: none; stroke: #FFF; stroke-width: 0px; opacity: 0.0" cx="100" cy="100" r="2"></circle>
+      <circle class="el" style="fill: none; stroke: #FFF; stroke-width: 0px; opacity: 0.0" cx="100" cy="100" r="2"></circle>
+    </svg>
+
     <script>
-      var maxTop = 960;
-      var maxLeft = 960;
+      var maxX = 960;
+      var maxY = 1080;
 
       var moveWave = function() {
-        var newTop = Math.floor(Math.random() * maxTop) + 1;
-        var newLeft = Math.floor(Math.random() * maxLeft) + 1;
+        var newX = Math.floor(Math.random() * maxX) + 1;
+        var newY = Math.floor(Math.random() * maxY) + 1;
 
-        $('.el').css('top', newTop);
-        $('.el').css('left', newLeft);
+        $('.el').attr('cx', newX);
+        $('.el').attr('cy', newY);
       };
 
       var waveAnimation = function() {
         anime({
           targets: '.el',
-          scaleX: 25,
-          scaleY: 25,
+          r: 200,
           opacity: [
-            {value: 0.5, duration: 500},
-            {value: 0.0, duration: 1500}
+            {value: 0.8, duration: 250},
+            {value: 0.0, duration: 1250}
           ],
-          duration: 2000,
+          "stroke-width": [2, 18, 0],
+          duration: 1500,
           delay: anime.stagger(400),
           easing: 'easeInOutSine',
           loop: true,
-          loopComplete: moveWave
+          loopComplete: moveWave,
         });
       };
 
